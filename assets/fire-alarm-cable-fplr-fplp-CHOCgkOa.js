@@ -1,0 +1,1 @@
+import{j as r}from"./index-DZrN6Xsp.js";import{P as p,a as t,S as s}from"./product-xc4LIGQT.js";import{p as a}from"./products-CA5h2RZ2.js";import"./cta-AumZVwNf.js";function u(){const o=a("fire-alarm-cable-fplr-fplp");return r.jsxs("main",{children:[r.jsx(p,{product:o}),r.jsx(t,{product:o}),r.jsx(s,{product:o})]})}export{u as component};

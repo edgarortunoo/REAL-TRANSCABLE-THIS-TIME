@@ -1,0 +1,1 @@
+import{j as o}from"./index-DZrN6Xsp.js";import{P as t,a as p,S as c}from"./product-xc4LIGQT.js";import{p as s}from"./products-CA5h2RZ2.js";import"./cta-AumZVwNf.js";function u(){const r=s("commercial-cable");return o.jsxs("main",{children:[o.jsx(t,{product:r}),o.jsx(p,{product:r}),o.jsx(c,{product:r})]})}export{u as component};

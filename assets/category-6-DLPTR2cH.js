@@ -1,0 +1,1 @@
+import{j as o}from"./index-DZrN6Xsp.js";import{P as t,a as p,S as s}from"./product-xc4LIGQT.js";import{p as c}from"./products-CA5h2RZ2.js";import"./cta-AumZVwNf.js";function u(){const r=c("category-6");return o.jsxs("main",{children:[o.jsx(t,{product:r}),o.jsx(p,{product:r}),o.jsx(s,{product:r})]})}export{u as component};
