@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Application for Employment | Trans Cable</title>
+<meta name="description" content="Apply for a job at Trans Cable in Bonham, Texas. Fill out the online application and upload your resume. No need to print and scan."/>
+<link rel="stylesheet" href="/assets/styles-DyW0AVkh.css"/>
+<link rel="icon" href="/assets/favicon.png"/>
+<style>
+  .ap-main{padding-top:3rem;padding-bottom:3rem}
+  @media(min-width:768px){.ap-main{padding-top:4rem;padding-bottom:4rem}}
+  .ap-crumb{margin-bottom:1.5rem}
+  .ap-card{padding:1.5rem}
+  @media(min-width:768px){.ap-card{padding:2rem}}
+  .ap-eeo{margin-top:1.5rem;border-top:1px solid var(--color-line);padding-top:1.25rem}
+  .ap-wrap{display:grid;gap:1.5rem}
+  @media(min-width:1024px){.ap-wrap{grid-template-columns:minmax(0,1fr) 22rem;gap:2rem;align-items:start}}
+  .ap-section+.ap-section{margin-top:2rem;padding-top:2rem;border-top:1px solid var(--color-line)}
+  .ap-sechead{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+  .ap-num{display:inline-flex;height:1.75rem;width:1.75rem;flex:none;align-items:center;justify-content:center;border-radius:9999px;border:1px solid var(--color-copper);color:var(--color-copper-lit);font-size:.8rem;font-weight:700}
+  .ap-sechead h2{font-size:1rem;font-weight:700;color:var(--color-cream)}
+  .ap-grid{display:grid;gap:1.25rem}
+  @media(min-width:640px){.ap-grid.two{grid-template-columns:1fr 1fr}.ap-grid .span2{grid-column:span 2}}
+  .ap-label{display:block;margin-bottom:.5rem;font-size:.875rem;font-weight:500;color:var(--color-cream)}
+  .ap-label .req{margin-left:.25rem;color:var(--color-copper)}
+  .ap-label .opt{margin-left:.4rem;font-size:.75rem;font-weight:400;color:var(--color-mist)}
+  .ap-input{width:100%;border-radius:.375rem;border:1px solid var(--color-line);background:var(--color-ink);padding:.75rem 1rem;font:inherit;font-size:.875rem;color:var(--color-cream);outline:none;transition:border-color .15s,box-shadow .15s}
+  .ap-input::placeholder{color:rgb(147 161 180 / .5)}
+  .ap-input:focus{border-color:var(--color-copper);box-shadow:0 0 0 3px rgb(192 127 63 / .18)}
+  .ap-input[aria-invalid="true"]{border-color:#e5736b}
+  textarea.ap-input{resize:vertical;min-height:7rem}
+  .ap-err{margin-top:.4rem;font-size:.8rem;color:#f0948d;min-height:0}
+  .ap-hint{margin-top:.4rem;font-size:.75rem;color:var(--color-mist)}
+  .ap-drop{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;border:1.5px dashed var(--color-line);border-radius:.5rem;background:rgb(11 17 27 / .6);padding:1.75rem 1rem;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+  .ap-drop:hover,.ap-drop.over,.ap-drop:focus-within{border-color:var(--color-copper);background:rgb(192 127 63 / .06)}
+  .ap-drop[aria-invalid="true"]{border-color:#e5736b}
+  .ap-drop input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+  .ap-drop svg{height:2rem;width:2rem;color:var(--color-copper-lit)}
+  .ap-drop strong{font-size:.9rem;color:var(--color-cream)}
+  .ap-drop span{font-size:.8rem;color:var(--color-mist)}
+  .ap-file{display:none;align-items:center;gap:.75rem;border:1px solid var(--color-line);border-radius:.5rem;background:var(--color-ink);padding:.75rem 1rem}
+  .ap-file.on{display:flex}
+  .ap-file svg{height:1.5rem;width:1.5rem;flex:none;color:var(--color-copper-lit)}
+  .ap-file .nm{min-width:0;flex:1}
+  .ap-file .nm b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.875rem;font-weight:600;color:var(--color-cream)}
+  .ap-file .nm i{font-style:normal;font-size:.75rem;color:var(--color-mist)}
+  .ap-file button{flex:none;border-radius:.375rem;border:1px solid var(--color-line);background:transparent;padding:.35rem .7rem;font-size:.8rem;color:var(--color-mist);cursor:pointer}
+  .ap-file button:hover{border-color:var(--color-copper);color:var(--color-copper-lit)}
+  .ap-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border-radius:.375rem;border:0;background:var(--color-copper);padding:.85rem 1.75rem;font:inherit;font-size:.9rem;font-weight:600;color:var(--color-ink);cursor:pointer;transition:background .15s}
+  .ap-btn:hover{background:var(--color-copper-lit)}
+  .ap-btn:disabled{cursor:not-allowed;opacity:.65}
+  .ap-btn.ghost{background:transparent;border:1px solid var(--color-line);color:var(--color-cream)}
+  .ap-btn.ghost:hover{border-color:var(--color-copper);background:transparent;color:var(--color-copper-lit)}
+  .ap-spin{display:none;height:1rem;width:1rem;border-radius:9999px;border:2px solid rgb(11 17 27 / .3);border-top-color:var(--color-ink);animation:ap-r .7s linear infinite}
+  .ap-btn.busy .ap-spin{display:inline-block}
+  @keyframes ap-r{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.ap-spin{animation-duration:2s}}
+  .ap-banner{display:none;margin-bottom:1.5rem;border:1px solid #7a3b37;border-radius:.5rem;background:rgb(229 115 107 / .1);padding:.9rem 1rem;font-size:.875rem;color:#f6b4af}
+  .ap-banner.on{display:block}
+  .ap-hp{position:absolute!important;left:-9999px;height:1px;width:1px;overflow:hidden}
+  .ap-done{display:none;text-align:center;padding:1.5rem 0}
+  .ap-done.on{display:block}
+  .ap-done .tick{display:inline-flex;height:3.5rem;width:3.5rem;align-items:center;justify-content:center;border-radius:9999px;background:rgb(192 127 63 / .15);color:var(--color-copper-lit)}
+  .ap-done .tick svg{height:1.75rem;width:1.75rem}
+  .ap-done h2{margin-top:1.25rem;font-size:1.5rem;font-weight:800;color:var(--color-cream)}
+  .ap-done p{margin:.75rem auto 0;max-width:30rem;font-size:.95rem;line-height:1.6;color:var(--color-mist)}
+  .ap-done .row{margin-top:1.75rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem}
+  .ap-steps{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:1rem}
+  .ap-steps li{display:flex;gap:.75rem;font-size:.85rem;line-height:1.5;color:var(--color-mist)}
+  .ap-steps b{color:var(--color-cream)}
+  #ap-mnav{display:none;border-bottom:1px solid var(--color-line);background:var(--color-panel);padding:.75rem 1.25rem 1rem}
+  #ap-mnav.on{display:block}
+  #ap-mnav a{display:block;padding:.55rem 0;font-size:.9rem;color:var(--color-cream)}
+  #ap-mnav p{margin-top:.75rem;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--color-copper-lit)}
+  @media(min-width:1024px){#ap-mnav{display:none!important}}
+</style>
+</head>
+<body class="bg-ink text-cream">
+<div style="position:sticky;top:0;z-index:50">
+<header class="border-b border-line/60 bg-ink/90 backdrop-blur"><div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 lg:gap-12"><div class="flex items-center gap-3"><button type="button" class="text-cream lg:hidden" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-6 w-6"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"></path></svg></button><a href="/" class="flex shrink-0 items-center"><img src="/assets/logo-white.png" alt="Trans Cable | U.S. Cable Manufacturer" class="h-12 w-auto md:h-14 lg:-ml-3"/></a></div><nav class="hidden items-center gap-6 lg:flex" aria-label="Main"><a href="/" class="text-sm font-medium text-mist transition-colors hover:text-copper-lit">Home</a><div class="group relative"><button type="button" class="flex items-center gap-1 text-sm font-medium text-mist transition-colors hover:text-copper-lit" aria-haspopup="true">Low Voltage<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3 w-3 transition-transform group-hover:rotate-180"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><div class="invisible absolute left-0 top-full z-50 pt-3 opacity-0 transition-all group-hover:visible group-hover:opacity-100"><div class="w-72 rounded-lg border border-line bg-panel p-2 shadow-2xl shadow-black/50"><a href="/fire-alarm-cable-fplr-fplp" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Fire Alarm Cable (FPLR / FPLP)</a><a href="/power-control-high-temperature" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Power Control &amp; High Temperature</a><a href="/fiber-optic-cable" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Fiber Optic Cable</a></div></div></div><div class="group relative"><button type="button" class="flex items-center gap-1 text-sm font-medium text-mist transition-colors hover:text-copper-lit" aria-haspopup="true">Communication and Data<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3 w-3 transition-transform group-hover:rotate-180"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><div class="invisible absolute left-0 top-full z-50 pt-3 opacity-0 transition-all group-hover:visible group-hover:opacity-100"><div class="w-72 rounded-lg border border-line bg-panel p-2 shadow-2xl shadow-black/50"><a href="/category-6" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Category 6</a><a href="/category-6a" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Category 6A</a><a href="/category-6x-treme" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Category 6 X-Treme</a></div></div></div><div class="group relative"><button type="button" class="flex items-center gap-1 text-sm font-medium text-mist transition-colors hover:text-copper-lit" aria-haspopup="true">Solutions<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3 w-3 transition-transform group-hover:rotate-180"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><div class="invisible absolute left-0 top-full z-50 pt-3 opacity-0 transition-all group-hover:visible group-hover:opacity-100"><div class="w-72 rounded-lg border border-line bg-panel p-2 shadow-2xl shadow-black/50"><a href="/military-grade-wiring" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Military / Defense</a><a href="/aerospace-cable" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Aerospace</a><a href="/industrial-cable" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Industrial</a><a href="/commercial-cable" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Commercial</a><a href="/white-pages" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">OEM / White Pages</a><a href="/packaging-solutions" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Packaging Solutions</a></div></div></div><div class="group relative"><button type="button" class="flex items-center gap-1 text-sm font-medium text-mist transition-colors hover:text-copper-lit" aria-haspopup="true">About<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3 w-3 transition-transform group-hover:rotate-180"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><div class="invisible absolute left-0 top-full z-50 pt-3 opacity-0 transition-all group-hover:visible group-hover:opacity-100"><div class="w-72 rounded-lg border border-line bg-panel p-2 shadow-2xl shadow-black/50"><a href="/our-history" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Our History</a><a href="/tour-our-plant" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Tour Our Plant</a><a href="/iso90012015-as9100d-certificate" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">ISO 9001:2015 / AS9100D</a><a class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit active" href="/career" data-status="active" aria-current="page">Careers</a></div></div></div><div class="group relative"><button type="button" class="flex items-center gap-1 text-sm font-medium text-mist transition-colors hover:text-copper-lit" aria-haspopup="true">Resources<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3 w-3 transition-transform group-hover:rotate-180"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><div class="invisible absolute left-0 top-full z-50 pt-3 opacity-0 transition-all group-hover:visible group-hover:opacity-100"><div class="w-72 rounded-lg border border-line bg-panel p-2 shadow-2xl shadow-black/50"><a href="/all-resources" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">All Resources</a><a href="/warranty-registration" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Warranty Registration</a><a href="/terms-and-conditions-of-purchase" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Terms &amp; Conditions of Purchase</a><a href="/supplier-flowdown" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">Supplier Flowdown</a><a href="/nda" class="block rounded-md px-3 py-2 text-sm text-cream transition-colors hover:bg-ink hover:text-copper-lit">NDA</a></div></div></div><a href="/contact" class="text-sm font-medium text-mist transition-colors hover:text-copper-lit">Contact</a></nav><div class="flex items-center gap-5"><a href="tel:+19034494622" class="hidden text-sm font-medium text-mist transition-colors hover:text-copper-lit md:block">903.449.4622</a><a href="/contact" class="hidden items-center gap-1.5 rounded-md bg-copper px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-copper-lit sm:inline-flex">Request a Quote</a></div></div></header>
+<div id="ap-mnav">
+  <a href="/">Home</a>
+  <p>Low Voltage</p>
+  <a href="/fire-alarm-cable-fplr-fplp">Fire Alarm Cable (FPLR / FPLP)</a><a href="/power-control-high-temperature">Power Control &amp; High Temperature</a><a href="/fiber-optic-cable">Fiber Optic Cable</a>
+  <p>Communication and Data</p>
+  <a href="/category-6">Category 6</a><a href="/category-6a">Category 6A</a><a href="/category-6x-treme">Category 6 X-Treme</a>
+  <p>Solutions</p>
+  <a href="/military-grade-wiring">Military / Defense</a><a href="/aerospace-cable">Aerospace</a><a href="/industrial-cable">Industrial</a><a href="/commercial-cable">Commercial</a><a href="/white-pages">OEM / White Pages</a><a href="/packaging-solutions">Packaging Solutions</a>
+  <p>About</p>
+  <a href="/our-history">Our History</a><a href="/tour-our-plant">Tour Our Plant</a><a href="/iso90012015-as9100d-certificate">ISO 9001:2015 / AS9100D</a><a href="/career">Careers</a>
+  <p>More</p>
+  <a href="/all-resources">All Resources</a><a href="/contact">Contact</a>
+</div>
+</div>
+
+<main class="mx-auto max-w-7xl px-5 ap-main">
+  <nav aria-label="Breadcrumb" class="ap-crumb text-sm text-mist"><a href="/career" class="transition-colors hover:text-copper-lit">Careers</a> <span aria-hidden="true">/</span> <span class="text-cream">Application for employment</span></nav>
+  <div class="max-w-2xl">
+    <p class="eyebrow mb-3">Careers</p>
+    <h1 class="text-4xl font-extrabold tracking-tight text-cream">Application for employment</h1>
+    <p class="mt-4 text-base leading-relaxed text-mist">It&#x27;s easy, no need to print &amp; scan. Fill out the form, attach your resume, and we&#x27;ll send it straight to our HR team.</p>
+  </div>
+
+  <div class="ap-wrap mt-10">
+    <div class="card ap-card">
+      <noscript><p class="ap-banner on">This application needs JavaScript. Please turn it on, or email your resume to hr@transcableusa.com.</p></noscript>
+      <div id="ap-banner" class="ap-banner" role="alert"></div>
+
+      <form id="ap-form" novalidate>
+        <div class="ap-hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"/></label></div>
+        <input type="hidden" name="startedAt" id="ap-started" value=""/>
+
+        <section class="ap-section">
+          <div class="ap-sechead"><span class="ap-num">1</span><h2>About you</h2></div>
+          <div class="ap-grid two">
+            <div><label class="ap-label" for="firstName">First name<span class="req">*</span></label><input class="ap-input" id="firstName" name="firstName" type="text" autocomplete="given-name" maxlength="80" required/><p class="ap-err" data-for="firstName"></p></div>
+            <div><label class="ap-label" for="lastName">Last name<span class="req">*</span></label><input class="ap-input" id="lastName" name="lastName" type="text" autocomplete="family-name" maxlength="80" required/><p class="ap-err" data-for="lastName"></p></div>
+            <div><label class="ap-label" for="email">Email address<span class="req">*</span></label><input class="ap-input" id="email" name="email" type="email" autocomplete="email" maxlength="200" placeholder="you@example.com" required/><p class="ap-err" data-for="email"></p></div>
+            <div><label class="ap-label" for="phone">Phone number<span class="req">*</span></label><input class="ap-input" id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="(555) 555-5555" required/><p class="ap-err" data-for="phone"></p></div>
+            <div><label class="ap-label" for="city">City<span class="opt">Optional</span></label><input class="ap-input" id="city" name="city" type="text" autocomplete="address-level2" maxlength="100"/></div>
+            <div><label class="ap-label" for="state">State<span class="opt">Optional</span></label><input class="ap-input" id="state" name="state" type="text" autocomplete="address-level1" maxlength="60" placeholder="TX"/></div>
+          </div>
+        </section>
+
+        <section class="ap-section">
+          <div class="ap-sechead"><span class="ap-num">2</span><h2>Position</h2></div>
+          <div><label class="ap-label" for="position">Position you&#x27;re interested in<span class="opt">Optional</span></label><input class="ap-input" id="position" name="position" type="text" maxlength="150" placeholder="For example: machine operator, quality tech, warehouse"/><p class="ap-hint">Not sure? Leave it blank and we&#x27;ll review your resume for any fit.</p></div>
+        </section>
+
+        <section class="ap-section">
+          <div class="ap-sechead"><span class="ap-num">3</span><h2>Resume</h2></div>
+          <label class="ap-drop" id="ap-drop" for="resume">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
+            <strong>Upload your resume</strong>
+            <span>Drag a file here or click to browse. PDF, DOC or DOCX, up to 5 MB.</span>
+            <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required/>
+          </label>
+          <div class="ap-file" id="ap-file">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+            <div class="nm"><b id="ap-fname"></b><i id="ap-fsize"></i></div>
+            <button type="button" id="ap-fremove">Remove</button>
+          </div>
+          <p class="ap-err" data-for="resume"></p>
+        </section>
+
+        <section class="ap-section">
+          <div class="ap-sechead"><span class="ap-num">4</span><h2>Anything else?</h2></div>
+          <div><label class="ap-label" for="message">Additional information<span class="opt">Optional</span></label><textarea class="ap-input" id="message" name="message" rows="5" maxlength="4000" placeholder="Availability, relevant experience, or anything you&#x27;d like us to know."></textarea></div>
+        </section>
+
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <button type="submit" class="ap-btn" id="ap-submit"><span class="ap-spin" aria-hidden="true"></span><span id="ap-submit-label">Submit</span></button>
+          <p class="text-xs text-mist">Your application and resume go only to Trans Cable&#x27;s HR team.</p>
+        </div>
+      </form>
+
+      <div class="ap-done" id="ap-done" role="status" tabindex="-1">
+        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h2>Application received</h2>
+        <p id="ap-done-text">Thank you. Your application and resume have been sent to our HR team.</p>
+        <p>If your background matches one of our openings, someone from HR will contact you.</p>
+        <div class="row"><a class="ap-btn" href="/career">Back to Careers</a><a class="ap-btn ghost" href="/">Return home</a></div>
+      </div>
+    </div>
+
+    <aside class="card p-6">
+      <h2 class="text-base font-bold text-cream">What happens next</h2>
+      <ol class="ap-steps">
+        <li><span class="ap-num">1</span><span><b>You submit</b><br/>You&#x27;ll see a confirmation right away.</span></li>
+        <li><span class="ap-num">2</span><span><b>HR reviews</b><br/>Your application and resume go straight to our HR team.</span></li>
+        <li><span class="ap-num">3</span><span><b>We reach out</b><br/>If your background fits an opening, we&#x27;ll contact you.</span></li>
+      </ol>
+      <p class="ap-eeo text-xs leading-relaxed text-mist">We are an equal opportunity employer who celebrates diversity and are committed to creating an inclusive environment for all employees.</p>
+    </aside>
+  </div>
+</main>
+
+<footer class="border-t border-line/60 bg-panel"><div class="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-12"><div class="md:col-span-3"><p class="eyebrow mb-4">Company</p><ul class="space-y-2.5"><li><a href="/fire-alarm-cable-fplr-fplp" class="text-sm text-mist transition-colors hover:text-copper-lit">Low Voltage</a></li><li><a href="/category-6" class="text-sm text-mist transition-colors hover:text-copper-lit">Communication and Data</a></li><li><a href="/military-grade-wiring" class="text-sm text-mist transition-colors hover:text-copper-lit">Solutions</a></li><li><a class="text-sm text-mist transition-colors hover:text-copper-lit active" href="/career" data-status="active" aria-current="page">Careers</a></li></ul></div><div class="md:col-span-2"><p class="eyebrow mb-4">Resources</p><ul class="space-y-2.5"><li><a href="/all-resources" class="text-sm text-mist transition-colors hover:text-copper-lit">All Resources</a></li><li><a href="/warranty-registration" class="text-sm text-mist transition-colors hover:text-copper-lit">Warranty</a></li><li><a href="/iso90012015-as9100d-certificate" class="text-sm text-mist transition-colors hover:text-copper-lit">ISO Cert</a></li><li><a href="/terms-and-conditions-of-purchase" class="text-sm text-mist transition-colors hover:text-copper-lit">Terms</a></li></ul></div><div class="md:col-span-3"><p class="eyebrow mb-4">Contact</p><address class="space-y-2 text-sm not-italic text-mist"><p>800 East 2nd Street<br/>Bonham, TX 75418</p><p><a href="tel:+19034494622" class="hover:text-copper-lit">903.449.4622</a><br/>Fax: <!-- -->903.449.4623</p><p><a href="mailto:info@transcableusa.com" class="hover:text-copper-lit">info@transcableusa.com</a></p></address></div><div class="md:col-span-4"><img src="/assets/logo-white.png" alt="Trans Cable" class="mb-4 h-8 w-auto"/><p class="max-w-xs text-sm leading-relaxed text-mist">Trans Cable International, Inc.<!-- -->. Engineered in the USA and built to spec at our Bonham, TX plant since 2013.</p><div class="mt-5 flex gap-4"><a href="https://www.facebook.com/transcable" target="_blank" rel="noreferrer" class="text-sm font-medium text-mist transition-colors hover:text-copper-lit">Facebook</a><a href="https://www.instagram.com/transcable" target="_blank" rel="noreferrer" class="text-sm font-medium text-mist transition-colors hover:text-copper-lit">Instagram</a><a href="https://www.linkedin.com/company/trans-cable" target="_blank" rel="noreferrer" class="text-sm font-medium text-mist transition-colors hover:text-copper-lit">LinkedIn</a></div></div></div><div class="border-t border-line/60"><div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-xs text-mist md:flex-row"><p>© <!-- -->2026<!-- --> Trans Cable International, Inc. All rights reserved.</p><div class="flex items-center gap-3"><img src="/assets/made-in-usa.png" alt="Made in the USA" class="h-7 w-auto"/><span>ISO 9001:2015 · AS9100D</span></div></div></div></footer>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $("ap-form"), banner = $("ap-banner"), drop = $("ap-drop"), input = $("resume");
+  var fileBox = $("ap-file"), btn = $("ap-submit"), label = $("ap-submit-label");
+  var MAX = 5 * 1024 * 1024, EXT = ["pdf", "doc", "docx"];
+  $("ap-started").value = String(Date.now());
+
+  // Mobile menu (this page does not load the site's app script)
+  var mb = document.querySelector('button[aria-label="Open menu"]'), mn = $("ap-mnav");
+  if (mb && mn) mb.addEventListener("click", function () { mn.classList.toggle("on"); });
+
+  function err(name, msg) {
+    var p = document.querySelector('[data-for="' + name + '"]'); if (p) p.textContent = msg || "";
+    var el = name === "resume" ? drop : $(name);
+    if (el) { if (msg) el.setAttribute("aria-invalid", "true"); else el.removeAttribute("aria-invalid"); }
+  }
+  function clearAll() { ["firstName", "lastName", "email", "phone", "resume"].forEach(function (n) { err(n, ""); }); banner.classList.remove("on"); }
+  function showBanner(msg) { banner.textContent = msg; banner.classList.add("on"); banner.scrollIntoView({ behavior: "smooth", block: "center" }); }
+  function size(n) { return n < 1048576 ? Math.max(1, Math.round(n / 1024)) + " KB" : (n / 1048576).toFixed(1) + " MB"; }
+  function ext(n) { return (n.split(".").pop() || "").toLowerCase(); }
+
+  function checkFile(f) {
+    if (!f) return "Please attach your resume.";
+    if (EXT.indexOf(ext(f.name)) < 0) return "Please upload a PDF, DOC or DOCX file.";
+    if (f.size > MAX) return "That file is " + size(f.size) + ". Please upload a file under 5 MB.";
+    if (!f.size) return "That file looks empty. Please choose another.";
+    return "";
+  }
+  function showFile() {
+    var f = input.files && input.files[0];
+    if (!f) { fileBox.classList.remove("on"); drop.style.display = ""; return; }
+    var m = checkFile(f); err("resume", m);
+    if (m) { input.value = ""; fileBox.classList.remove("on"); drop.style.display = ""; return; }
+    $("ap-fname").textContent = f.name; $("ap-fsize").textContent = size(f.size);
+    fileBox.classList.add("on"); drop.style.display = "none";
+  }
+  input.addEventListener("change", showFile);
+  $("ap-fremove").addEventListener("click", function () { input.value = ""; showFile(); err("resume", ""); input.focus(); });
+  ["dragenter", "dragover"].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add("over"); }); });
+  ["dragleave", "drop"].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.remove("over"); }); });
+  drop.addEventListener("drop", function (e) {
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+      try { var dt = new DataTransfer(); dt.items.add(e.dataTransfer.files[0]); input.files = dt.files; } catch (x) {}
+      showFile();
+    }
+  });
+  form.addEventListener("input", function (e) { if (e.target && e.target.id) err(e.target.id, ""); });
+
+  function validate() {
+    var bad = [], v = function (n) { return (form.elements[n].value || "").trim(); };
+    if (!v("firstName")) { err("firstName", "Please enter your first name."); bad.push("firstName"); }
+    if (!v("lastName")) { err("lastName", "Please enter your last name."); bad.push("lastName"); }
+    if (!v("email")) { err("email", "Please enter your email address."); bad.push("email"); }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email"))) { err("email", "That email address doesn't look right."); bad.push("email"); }
+    if (!v("phone")) { err("phone", "Please enter a phone number."); bad.push("phone"); }
+    var fm = checkFile(input.files && input.files[0]);
+    if (fm) { err("resume", fm); bad.push("resume"); }
+    return bad;
+  }
+
+  var MSG = {
+    "file-too-large": "Your resume is over 5 MB. Please upload a smaller file.",
+    "bad-file-type": "We couldn't accept that file. Please upload a PDF, DOC or DOCX resume.",
+    "missing-resume": "Please attach your resume.",
+    "invalid-email": "That email address doesn't look right.",
+    "missing-fields": "Please fill in all the required fields.",
+    "too-fast": "That went through very quickly. Please check your answers and submit again."
+  };
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); clearAll();
+    var bad = validate();
+    if (bad.length) { var first = bad[0] === "resume" ? input : $(bad[0]); (bad[0] === "resume" ? drop : first).scrollIntoView({ behavior: "smooth", block: "center" }); if (bad[0] !== "resume") first.focus(); return; }
+    btn.disabled = true; btn.classList.add("busy"); label.textContent = "Submitting...";
+    var fd = new FormData(form);
+    fetch("/api/apply", { method: "POST", body: fd })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok && j.ok, j: j }; }); })
+      .then(function (res) {
+        if (res.ok) {
+          var name = (form.elements.firstName.value || "").trim();
+          $("ap-done-text").textContent = "Thank you" + (name ? ", " + name : "") + ". Your application and resume have been sent to our HR team.";
+          form.style.display = "none"; banner.classList.remove("on"); $("ap-done").classList.add("on");
+          $("ap-done").scrollIntoView({ behavior: "smooth", block: "start" }); $("ap-done").focus({ preventScroll: true });
+          return;
+        }
+        showBanner((res.j && (MSG[res.j.error] || res.j.message)) || "We couldn't submit your application just now. Please try again in a moment, or email your resume to hr@transcableusa.com.");
+      })
+      .catch(function () { showBanner("We couldn't reach the server. Please check your connection and try again, or email your resume to hr@transcableusa.com."); })
+      .then(function () { btn.disabled = false; btn.classList.remove("busy"); label.textContent = "Submit"; });
+  });
+})();
+</script>
+</body>
+</html>
