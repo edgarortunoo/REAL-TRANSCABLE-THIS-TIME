@@ -74,6 +74,15 @@
   #ap-mnav a{display:block;padding:.55rem 0;font-size:.9rem;color:var(--color-cream)}
   #ap-mnav p{margin-top:.75rem;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--color-copper-lit)}
   @media(min-width:1024px){#ap-mnav{display:none!important}}
+  .ap-radios{display:flex;gap:.75rem;flex-wrap:wrap}
+  .ap-radios label{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--color-line);border-radius:.375rem;background:var(--color-ink);padding:.55rem 1rem;font-size:.875rem;color:var(--color-cream);cursor:pointer;transition:border-color .15s}
+  .ap-radios label:hover,.ap-radios label:has(input:checked){border-color:var(--color-copper)}
+  .ap-radios input{accent-color:var(--color-copper)}
+  .ap-radios[aria-invalid="true"] label{border-color:#e5736b}
+  select.ap-input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2393a1b4' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .75rem center;background-size:1.1rem;padding-right:2.4rem}
+  .ap-sub{margin:.75rem 0 -.25rem;padding-top:1rem;border-top:1px solid var(--color-line);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-copper-lit)}
+  .ap-sub:first-child{border-top:0;padding-top:0;margin-top:0}
+  .ap-grid>*{min-width:0}
 </style>
 </head>
 <body class="bg-ink text-cream">
@@ -99,7 +108,8 @@
   <div class="max-w-2xl">
     <p class="eyebrow mb-3">Careers</p>
     <h1 class="text-4xl font-extrabold tracking-tight text-cream">Application for employment</h1>
-    <p class="mt-4 text-base leading-relaxed text-mist">It&#x27;s easy, no need to print &amp; scan. Fill out the form, attach your resume, and we&#x27;ll send it straight to our HR team.</p>
+    <p class="mt-4 text-base leading-relaxed text-mist">It&#x27;s easy, no need to print &amp; scan. Fill out the form, attach your resume if you have one, and we&#x27;ll send it straight to our HR team.</p>
+    <p class="mt-3 text-sm text-mist"><span style="color:var(--color-copper)">*</span> Required</p>
   </div>
 
   <div class="ap-wrap mt-10">
@@ -112,29 +122,120 @@
         <input type="hidden" name="startedAt" id="ap-started" value=""/>
 
         <section class="ap-section">
-          <div class="ap-sechead"><span class="ap-num">1</span><h2>About you</h2></div>
+          <div class="ap-sechead"><span class="ap-num">1</span><h2>Applicant information</h2></div>
           <div class="ap-grid two">
-            <div><label class="ap-label" for="firstName">First name<span class="req">*</span></label><input class="ap-input" id="firstName" name="firstName" type="text" autocomplete="given-name" maxlength="80" required/><p class="ap-err" data-for="firstName"></p></div>
-            <div><label class="ap-label" for="lastName">Last name<span class="req">*</span></label><input class="ap-input" id="lastName" name="lastName" type="text" autocomplete="family-name" maxlength="80" required/><p class="ap-err" data-for="lastName"></p></div>
-            <div><label class="ap-label" for="email">Email address<span class="req">*</span></label><input class="ap-input" id="email" name="email" type="email" autocomplete="email" maxlength="200" placeholder="you@example.com" required/><p class="ap-err" data-for="email"></p></div>
-            <div><label class="ap-label" for="phone">Phone number<span class="req">*</span></label><input class="ap-input" id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="(555) 555-5555" required/><p class="ap-err" data-for="phone"></p></div>
-            <div><label class="ap-label" for="city">City<span class="opt">Optional</span></label><input class="ap-input" id="city" name="city" type="text" autocomplete="address-level2" maxlength="100"/></div>
-            <div><label class="ap-label" for="state">State<span class="opt">Optional</span></label><input class="ap-input" id="state" name="state" type="text" autocomplete="address-level1" maxlength="60" placeholder="TX"/></div>
+            <div><label class="ap-label" for="name">Applicant name<span class="req">*</span></label><input class="ap-input" id="name" name="name" type="text" maxlength="120" autocomplete="name" required/><p class="ap-err" data-for="name"></p></div>
+            <div><label class="ap-label" for="email">Applicant email<span class="req">*</span></label><input class="ap-input" id="email" name="email" type="email" maxlength="200" placeholder="you@example.com" autocomplete="email" required/><p class="ap-err" data-for="email"></p></div>
+            <div><label class="ap-label" for="phone">Applicant home phone number<span class="req">*</span></label><input class="ap-input" id="phone" name="phone" type="tel" maxlength="40" placeholder="(555) 555-5555" autocomplete="tel" required/><p class="ap-err" data-for="phone"></p></div>
+            <div><label class="ap-label" for="address">Applicant present address<span class="req">*</span></label><input class="ap-input" id="address" name="address" type="text" maxlength="250" autocomplete="street-address" required/><p class="ap-err" data-for="address"></p></div>
+            <div><span class="ap-label" id="over18-l">Are you at least 18 years old?<span class="req">*</span></span><div class="ap-radios" id="over18" role="radiogroup" aria-labelledby="over18-l"><label><input type="radio" name="over18" value="Yes"/> Yes</label><label><input type="radio" name="over18" value="No"/> No</label></div><p class="ap-err" data-for="over18"></p></div>
+            <div class="span2"><span class="ap-label" id="background-l">Do you authorize a background investigation including prior employers, education, and criminal records?<span class="req">*</span></span><div class="ap-radios" id="background" role="radiogroup" aria-labelledby="background-l"><label><input type="radio" name="background" value="Yes"/> Yes</label><label><input type="radio" name="background" value="No"/> No</label></div><p class="ap-err" data-for="background"></p></div>
+            <div class="span2"><span class="ap-label" id="terminated-l">Has your employment with any other employer ever been involuntarily terminated?<span class="req">*</span></span><div class="ap-radios" id="terminated" role="radiogroup" aria-labelledby="terminated-l"><label><input type="radio" name="terminated" value="Yes"/> Yes</label><label><input type="radio" name="terminated" value="No"/> No</label></div><p class="ap-err" data-for="terminated"></p></div>
           </div>
         </section>
-
         <section class="ap-section">
-          <div class="ap-sechead"><span class="ap-num">2</span><h2>Position</h2></div>
-          <div><label class="ap-label" for="position">Position you&#x27;re interested in<span class="opt">Optional</span></label><input class="ap-input" id="position" name="position" type="text" maxlength="150" placeholder="For example: machine operator, quality tech, warehouse"/><p class="ap-hint">Not sure? Leave it blank and we&#x27;ll review your resume for any fit.</p></div>
+          <div class="ap-sechead"><span class="ap-num">2</span><h2>Position desired</h2></div>
+          <div class="ap-grid two">
+            <div><label class="ap-label" for="department">Department</label><select class="ap-input" id="department" name="department"><option value="">Select...</option><option>Manufacturing</option><option>Quality</option><option>Engineering</option><option>Maintenance</option><option>Office</option><option>Other</option></select><p class="ap-err" data-for="department"></p></div>
+            <div><label class="ap-label" for="otherDesired">Specify other desired</label><input class="ap-input" id="otherDesired" name="otherDesired" type="text" maxlength="150"/><p class="ap-err" data-for="otherDesired"></p></div>
+            <div><label class="ap-label" for="shift">Shift preference</label><select class="ap-input" id="shift" name="shift"><option value="">Select...</option><option>1st</option><option>2nd</option><option>3rd</option></select><p class="ap-err" data-for="shift"></p></div>
+            <div><label class="ap-label" for="status">Status</label><select class="ap-input" id="status" name="status"><option value="">Select...</option><option>Full Time</option><option>Part Time</option></select><p class="ap-err" data-for="status"></p></div>
+            <div><label class="ap-label" for="salary">Salary expectations</label><input class="ap-input" id="salary" name="salary" type="text" maxlength="100"/><p class="ap-err" data-for="salary"></p></div>
+            <div><label class="ap-label" for="startDate">Date you can start</label><input class="ap-input" id="startDate" name="startDate" type="date" maxlength="200"/><p class="ap-err" data-for="startDate"></p></div>
+            <div class="span2"><label class="ap-label" for="howHeard">How did you hear about TCI?</label><input class="ap-input" id="howHeard" name="howHeard" type="text" maxlength="200"/><p class="ap-err" data-for="howHeard"></p></div>
+            <div><span class="ap-label" id="employed-l">Are you currently employed?</span><div class="ap-radios" id="employed" role="radiogroup" aria-labelledby="employed-l"><label><input type="radio" name="employed" value="Yes"/> Yes</label><label><input type="radio" name="employed" value="No"/> No</label></div><p class="ap-err" data-for="employed"></p></div>
+            <div><span class="ap-label" id="contactEmployer-l">If currently employed, may we contact your employer?</span><div class="ap-radios" id="contactEmployer" role="radiogroup" aria-labelledby="contactEmployer-l"><label><input type="radio" name="contactEmployer" value="Yes"/> Yes</label><label><input type="radio" name="contactEmployer" value="No"/> No</label></div><p class="ap-err" data-for="contactEmployer"></p></div>
+            <div class="span2"><span class="ap-label" id="workedHere-l">Have you been employed by Trans Cable before?</span><div class="ap-radios" id="workedHere" role="radiogroup" aria-labelledby="workedHere-l"><label><input type="radio" name="workedHere" value="Yes"/> Yes</label><label><input type="radio" name="workedHere" value="No"/> No</label></div><p class="ap-err" data-for="workedHere"></p></div>
+          </div>
         </section>
-
         <section class="ap-section">
-          <div class="ap-sechead"><span class="ap-num">3</span><h2>Resume</h2></div>
+          <div class="ap-sechead"><span class="ap-num">3</span><h2>Education</h2></div>
+          <div class="ap-grid two">
+            <div class="span2"><label class="ap-label" for="hsSchool">High school: name and location of school</label><input class="ap-input" id="hsSchool" name="hsSchool" type="text" maxlength="200"/><p class="ap-err" data-for="hsSchool"></p></div>
+            <div><label class="ap-label" for="hsLastYear">Last year completed (high school)</label><input class="ap-input" id="hsLastYear" name="hsLastYear" type="text" maxlength="40"/><p class="ap-err" data-for="hsLastYear"></p></div>
+            <div><span class="ap-label" id="hsGrad-l">Did you graduate? (high school)</span><div class="ap-radios" id="hsGrad" role="radiogroup" aria-labelledby="hsGrad-l"><label><input type="radio" name="hsGrad" value="Yes"/> Yes</label><label><input type="radio" name="hsGrad" value="No"/> No</label></div><p class="ap-err" data-for="hsGrad"></p></div>
+            <div class="span2"><label class="ap-label" for="hsSubjects">Subjects studied and degrees received (high school)</label><textarea class="ap-input" id="hsSubjects" name="hsSubjects" rows="3" maxlength="500"></textarea><p class="ap-err" data-for="hsSubjects"></p></div>
+            <div class="span2"><label class="ap-label" for="collegeSchool">College: name and location of school</label><input class="ap-input" id="collegeSchool" name="collegeSchool" type="text" maxlength="200"/><p class="ap-err" data-for="collegeSchool"></p></div>
+            <div class="span2"><span class="ap-label" id="collegeGrad-l">Did you graduate? (college)</span><div class="ap-radios" id="collegeGrad" role="radiogroup" aria-labelledby="collegeGrad-l"><label><input type="radio" name="collegeGrad" value="Yes"/> Yes</label><label><input type="radio" name="collegeGrad" value="No"/> No</label></div><p class="ap-err" data-for="collegeGrad"></p></div>
+          </div>
+        </section>
+        <section class="ap-section">
+          <div class="ap-sechead"><span class="ap-num">4</span><h2>Employment history</h2></div>
+          <p class="ap-hint" style="margin:-.5rem 0 1rem">List your most recent employer first. Leave any extra employers blank.</p>
+          <div class="ap-grid two">
+            <p class="ap-sub span2">Employer 1 (most recent)</p>
+            <div><label class="ap-label" for="emp1_name">Employer name</label><input class="ap-input" id="emp1_name" name="emp1_name" type="text" maxlength="150"/><p class="ap-err" data-for="emp1_name"></p></div>
+            <div><label class="ap-label" for="emp1_position">Position held</label><input class="ap-input" id="emp1_position" name="emp1_position" type="text" maxlength="150"/><p class="ap-err" data-for="emp1_position"></p></div>
+            <div><label class="ap-label" for="emp1_dates">Month &amp; year (from / to)</label><input class="ap-input" id="emp1_dates" name="emp1_dates" type="text" maxlength="80" placeholder="e.g. 03/2021 - 08/2024"/><p class="ap-err" data-for="emp1_dates"></p></div>
+            <div><label class="ap-label" for="emp1_reason">Reason for leaving</label><input class="ap-input" id="emp1_reason" name="emp1_reason" type="text" maxlength="200"/><p class="ap-err" data-for="emp1_reason"></p></div>
+            <div><label class="ap-label" for="emp1_address">Address</label><input class="ap-input" id="emp1_address" name="emp1_address" type="text" maxlength="250"/><p class="ap-err" data-for="emp1_address"></p></div>
+            <div><label class="ap-label" for="emp1_phone">Phone number</label><input class="ap-input" id="emp1_phone" name="emp1_phone" type="tel" maxlength="40"/><p class="ap-err" data-for="emp1_phone"></p></div>
+            <div><label class="ap-label" for="emp1_contact">Person to contact</label><input class="ap-input" id="emp1_contact" name="emp1_contact" type="text" maxlength="120"/><p class="ap-err" data-for="emp1_contact"></p></div>
+            <div><label class="ap-label" for="emp1_contactPos">Contact&#x27;s position</label><input class="ap-input" id="emp1_contactPos" name="emp1_contactPos" type="text" maxlength="120"/><p class="ap-err" data-for="emp1_contactPos"></p></div>
+            <p class="ap-sub span2">Employer 2</p>
+            <div><label class="ap-label" for="emp2_name">Employer name</label><input class="ap-input" id="emp2_name" name="emp2_name" type="text" maxlength="150"/><p class="ap-err" data-for="emp2_name"></p></div>
+            <div><label class="ap-label" for="emp2_position">Position held</label><input class="ap-input" id="emp2_position" name="emp2_position" type="text" maxlength="150"/><p class="ap-err" data-for="emp2_position"></p></div>
+            <div><label class="ap-label" for="emp2_dates">Month &amp; year (from / to)</label><input class="ap-input" id="emp2_dates" name="emp2_dates" type="text" maxlength="80" placeholder="e.g. 03/2021 - 08/2024"/><p class="ap-err" data-for="emp2_dates"></p></div>
+            <div><label class="ap-label" for="emp2_reason">Reason for leaving</label><input class="ap-input" id="emp2_reason" name="emp2_reason" type="text" maxlength="200"/><p class="ap-err" data-for="emp2_reason"></p></div>
+            <div><label class="ap-label" for="emp2_address">Address</label><input class="ap-input" id="emp2_address" name="emp2_address" type="text" maxlength="250"/><p class="ap-err" data-for="emp2_address"></p></div>
+            <div><label class="ap-label" for="emp2_phone">Phone number</label><input class="ap-input" id="emp2_phone" name="emp2_phone" type="tel" maxlength="40"/><p class="ap-err" data-for="emp2_phone"></p></div>
+            <div><label class="ap-label" for="emp2_contact">Person to contact</label><input class="ap-input" id="emp2_contact" name="emp2_contact" type="text" maxlength="120"/><p class="ap-err" data-for="emp2_contact"></p></div>
+            <div><label class="ap-label" for="emp2_contactPos">Contact&#x27;s position</label><input class="ap-input" id="emp2_contactPos" name="emp2_contactPos" type="text" maxlength="120"/><p class="ap-err" data-for="emp2_contactPos"></p></div>
+            <p class="ap-sub span2">Employer 3</p>
+            <div><label class="ap-label" for="emp3_name">Employer name</label><input class="ap-input" id="emp3_name" name="emp3_name" type="text" maxlength="150"/><p class="ap-err" data-for="emp3_name"></p></div>
+            <div><label class="ap-label" for="emp3_position">Position held</label><input class="ap-input" id="emp3_position" name="emp3_position" type="text" maxlength="150"/><p class="ap-err" data-for="emp3_position"></p></div>
+            <div><label class="ap-label" for="emp3_dates">Month &amp; year (from / to)</label><input class="ap-input" id="emp3_dates" name="emp3_dates" type="text" maxlength="80" placeholder="e.g. 03/2021 - 08/2024"/><p class="ap-err" data-for="emp3_dates"></p></div>
+            <div><label class="ap-label" for="emp3_reason">Reason for leaving</label><input class="ap-input" id="emp3_reason" name="emp3_reason" type="text" maxlength="200"/><p class="ap-err" data-for="emp3_reason"></p></div>
+            <div><label class="ap-label" for="emp3_address">Address</label><input class="ap-input" id="emp3_address" name="emp3_address" type="text" maxlength="250"/><p class="ap-err" data-for="emp3_address"></p></div>
+            <div><label class="ap-label" for="emp3_phone">Phone number</label><input class="ap-input" id="emp3_phone" name="emp3_phone" type="tel" maxlength="40"/><p class="ap-err" data-for="emp3_phone"></p></div>
+            <div><label class="ap-label" for="emp3_contact">Person to contact</label><input class="ap-input" id="emp3_contact" name="emp3_contact" type="text" maxlength="120"/><p class="ap-err" data-for="emp3_contact"></p></div>
+            <div><label class="ap-label" for="emp3_contactPos">Contact&#x27;s position</label><input class="ap-input" id="emp3_contactPos" name="emp3_contactPos" type="text" maxlength="120"/><p class="ap-err" data-for="emp3_contactPos"></p></div>
+            <p class="ap-sub span2">Employer 4</p>
+            <div><label class="ap-label" for="emp4_name">Employer name</label><input class="ap-input" id="emp4_name" name="emp4_name" type="text" maxlength="150"/><p class="ap-err" data-for="emp4_name"></p></div>
+            <div><label class="ap-label" for="emp4_position">Position held</label><input class="ap-input" id="emp4_position" name="emp4_position" type="text" maxlength="150"/><p class="ap-err" data-for="emp4_position"></p></div>
+            <div><label class="ap-label" for="emp4_dates">Month &amp; year (from / to)</label><input class="ap-input" id="emp4_dates" name="emp4_dates" type="text" maxlength="80" placeholder="e.g. 03/2021 - 08/2024"/><p class="ap-err" data-for="emp4_dates"></p></div>
+            <div><label class="ap-label" for="emp4_reason">Reason for leaving</label><input class="ap-input" id="emp4_reason" name="emp4_reason" type="text" maxlength="200"/><p class="ap-err" data-for="emp4_reason"></p></div>
+            <div><label class="ap-label" for="emp4_address">Address</label><input class="ap-input" id="emp4_address" name="emp4_address" type="text" maxlength="250"/><p class="ap-err" data-for="emp4_address"></p></div>
+            <div><label class="ap-label" for="emp4_phone">Phone number</label><input class="ap-input" id="emp4_phone" name="emp4_phone" type="tel" maxlength="40"/><p class="ap-err" data-for="emp4_phone"></p></div>
+            <div><label class="ap-label" for="emp4_contact">Person to contact</label><input class="ap-input" id="emp4_contact" name="emp4_contact" type="text" maxlength="120"/><p class="ap-err" data-for="emp4_contact"></p></div>
+            <div><label class="ap-label" for="emp4_contactPos">Contact&#x27;s position</label><input class="ap-input" id="emp4_contactPos" name="emp4_contactPos" type="text" maxlength="120"/><p class="ap-err" data-for="emp4_contactPos"></p></div>
+          </div>
+        </section>
+        <section class="ap-section">
+          <div class="ap-sechead"><span class="ap-num">5</span><h2>Experience and skills</h2></div>
+          <div class="ap-grid two">
+            <div class="span2"><label class="ap-label" for="describeWork">Describe fully the nature of the work in your present job (or most recent job)</label><textarea class="ap-input" id="describeWork" name="describeWork" rows="5" maxlength="3000"></textarea><p class="ap-err" data-for="describeWork"></p></div>
+            <div class="span2"><label class="ap-label" for="skills">What special skills or knowledge do you have which will aid you in qualifying for employment? (include tools and machines)</label><textarea class="ap-input" id="skills" name="skills" rows="4" maxlength="3000"></textarea><p class="ap-err" data-for="skills"></p></div>
+            <div class="span2"><label class="ap-label" for="certs">List any certifications or licenses you currently possess</label><textarea class="ap-input" id="certs" name="certs" rows="3" maxlength="3000"></textarea><p class="ap-err" data-for="certs"></p></div>
+          </div>
+        </section>
+        <section class="ap-section">
+          <div class="ap-sechead"><span class="ap-num">6</span><h2>References</h2></div>
+          <div class="ap-grid two">
+            <p class="ap-sub span2">Reference 1</p>
+            <div><label class="ap-label" for="ref1_name">Name / position</label><input class="ap-input" id="ref1_name" name="ref1_name" type="text" maxlength="150"/><p class="ap-err" data-for="ref1_name"></p></div>
+            <div><label class="ap-label" for="ref1_company">Company name</label><input class="ap-input" id="ref1_company" name="ref1_company" type="text" maxlength="150"/><p class="ap-err" data-for="ref1_company"></p></div>
+            <div><label class="ap-label" for="ref1_contact">Address / phone number</label><input class="ap-input" id="ref1_contact" name="ref1_contact" type="text" maxlength="250"/><p class="ap-err" data-for="ref1_contact"></p></div>
+            <div><label class="ap-label" for="ref1_years">Years acquainted</label><input class="ap-input" id="ref1_years" name="ref1_years" type="text" maxlength="40"/><p class="ap-err" data-for="ref1_years"></p></div>
+            <p class="ap-sub span2">Reference 2</p>
+            <div><label class="ap-label" for="ref2_name">Name / position</label><input class="ap-input" id="ref2_name" name="ref2_name" type="text" maxlength="150"/><p class="ap-err" data-for="ref2_name"></p></div>
+            <div><label class="ap-label" for="ref2_company">Company name</label><input class="ap-input" id="ref2_company" name="ref2_company" type="text" maxlength="150"/><p class="ap-err" data-for="ref2_company"></p></div>
+            <div><label class="ap-label" for="ref2_contact">Address / phone number</label><input class="ap-input" id="ref2_contact" name="ref2_contact" type="text" maxlength="250"/><p class="ap-err" data-for="ref2_contact"></p></div>
+            <div><label class="ap-label" for="ref2_years">Years acquainted</label><input class="ap-input" id="ref2_years" name="ref2_years" type="text" maxlength="40"/><p class="ap-err" data-for="ref2_years"></p></div>
+            <p class="ap-sub span2">Reference 3</p>
+            <div><label class="ap-label" for="ref3_name">Name / position</label><input class="ap-input" id="ref3_name" name="ref3_name" type="text" maxlength="150"/><p class="ap-err" data-for="ref3_name"></p></div>
+            <div><label class="ap-label" for="ref3_company">Company name</label><input class="ap-input" id="ref3_company" name="ref3_company" type="text" maxlength="150"/><p class="ap-err" data-for="ref3_company"></p></div>
+            <div><label class="ap-label" for="ref3_contact">Address / phone number</label><input class="ap-input" id="ref3_contact" name="ref3_contact" type="text" maxlength="250"/><p class="ap-err" data-for="ref3_contact"></p></div>
+            <div><label class="ap-label" for="ref3_years">Years acquainted</label><input class="ap-input" id="ref3_years" name="ref3_years" type="text" maxlength="40"/><p class="ap-err" data-for="ref3_years"></p></div>
+          </div>
+        </section>
+        <section class="ap-section">
+          <div class="ap-sechead"><span class="ap-num">7</span><h2>Upload resume</h2></div>
           <label class="ap-drop" id="ap-drop" for="resume">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
-            <strong>Upload your resume</strong>
+            <strong>Upload your resume <span style="font-weight:400;color:var(--color-mist)">(optional)</span></strong>
             <span>Drag a file here or click to browse. PDF, DOC or DOCX, up to 5 MB.</span>
-            <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required/>
+            <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
           </label>
           <div class="ap-file" id="ap-file">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
@@ -143,10 +244,13 @@
           </div>
           <p class="ap-err" data-for="resume"></p>
         </section>
-
         <section class="ap-section">
-          <div class="ap-sechead"><span class="ap-num">4</span><h2>Anything else?</h2></div>
-          <div><label class="ap-label" for="message">Additional information<span class="opt">Optional</span></label><textarea class="ap-input" id="message" name="message" rows="5" maxlength="4000" placeholder="Availability, relevant experience, or anything you&#x27;d like us to know."></textarea></div>
+          <div class="ap-sechead"><span class="ap-num">8</span><h2>Sign and date</h2></div>
+          <div class="ap-grid two">
+            <div><label class="ap-label" for="signDate">Date<span class="req">*</span></label><input class="ap-input" id="signDate" name="signDate" type="date" maxlength="200" required/><p class="ap-err" data-for="signDate"></p></div>
+            <div><label class="ap-label" for="signName">Full name<span class="req">*</span></label><input class="ap-input" id="signName" name="signName" type="text" maxlength="120" required/><p class="ap-err" data-for="signName"></p></div>
+            <p class="ap-hint span2">By typing your full name, you confirm that the information in this application is true and complete.</p>
+          </div>
         </section>
 
         <div class="mt-8 flex flex-wrap items-center gap-4">
@@ -158,7 +262,7 @@
       <div class="ap-done" id="ap-done" role="status" tabindex="-1">
         <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
         <h2>Application received</h2>
-        <p id="ap-done-text">Thank you. Your application and resume have been sent to our HR team.</p>
+        <p id="ap-done-text">Thank you. Your application has been sent to our HR team.</p>
         <p>If your background matches one of our openings, someone from HR will contact you.</p>
         <div class="row"><a class="ap-btn" href="/career">Back to Careers</a><a class="ap-btn ghost" href="/">Return home</a></div>
       </div>
@@ -195,13 +299,15 @@
     var el = name === "resume" ? drop : $(name);
     if (el) { if (msg) el.setAttribute("aria-invalid", "true"); else el.removeAttribute("aria-invalid"); }
   }
-  function clearAll() { ["firstName", "lastName", "email", "phone", "resume"].forEach(function (n) { err(n, ""); }); banner.classList.remove("on"); }
+  var REQ = ["name", "email", "phone", "address", "over18", "background", "terminated", "signDate", "signName"];
+  var REQMSG = { name: "Please enter your name.", email: "Please enter your email address.", phone: "Please enter a phone number.", address: "Please enter your present address.", over18: "Please choose Yes or No.", background: "Please choose Yes or No.", terminated: "Please choose Yes or No.", signDate: "Please enter today's date.", signName: "Please type your full name to sign." };
+  function clearAll() { REQ.concat(["resume"]).forEach(function (n) { err(n, ""); }); banner.classList.remove("on"); }
   function showBanner(msg) { banner.textContent = msg; banner.classList.add("on"); banner.scrollIntoView({ behavior: "smooth", block: "center" }); }
   function size(n) { return n < 1048576 ? Math.max(1, Math.round(n / 1024)) + " KB" : (n / 1048576).toFixed(1) + " MB"; }
   function ext(n) { return (n.split(".").pop() || "").toLowerCase(); }
 
   function checkFile(f) {
-    if (!f) return "Please attach your resume.";
+    if (!f) return "";
     if (EXT.indexOf(ext(f.name)) < 0) return "Please upload a PDF, DOC or DOCX file.";
     if (f.size > MAX) return "That file is " + size(f.size) + ". Please upload a file under 5 MB.";
     if (!f.size) return "That file looks empty. Please choose another.";
@@ -225,15 +331,15 @@
       showFile();
     }
   });
-  form.addEventListener("input", function (e) { if (e.target && e.target.id) err(e.target.id, ""); });
+  form.addEventListener("input", function (e) { var t = e.target; if (t) err(t.type === "radio" ? t.name : t.id, ""); });
+  var d = new Date(); $("signDate").value = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
 
   function validate() {
     var bad = [], v = function (n) { return (form.elements[n].value || "").trim(); };
-    if (!v("firstName")) { err("firstName", "Please enter your first name."); bad.push("firstName"); }
-    if (!v("lastName")) { err("lastName", "Please enter your last name."); bad.push("lastName"); }
-    if (!v("email")) { err("email", "Please enter your email address."); bad.push("email"); }
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email"))) { err("email", "That email address doesn't look right."); bad.push("email"); }
-    if (!v("phone")) { err("phone", "Please enter a phone number."); bad.push("phone"); }
+    REQ.forEach(function (n) {
+      if (!v(n)) { err(n, REQMSG[n]); bad.push(n); }
+      else if (n === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v(n))) { err(n, "That email address doesn't look right."); bad.push(n); }
+    });
     var fm = checkFile(input.files && input.files[0]);
     if (fm) { err("resume", fm); bad.push("resume"); }
     return bad;
@@ -251,15 +357,15 @@
   form.addEventListener("submit", function (e) {
     e.preventDefault(); clearAll();
     var bad = validate();
-    if (bad.length) { var first = bad[0] === "resume" ? input : $(bad[0]); (bad[0] === "resume" ? drop : first).scrollIntoView({ behavior: "smooth", block: "center" }); if (bad[0] !== "resume") first.focus(); return; }
+    if (bad.length) { var first = bad[0] === "resume" ? drop : $(bad[0]); first.scrollIntoView({ behavior: "smooth", block: "center" }); if (first.focus && bad[0] !== "resume") first.focus(); return; }
     btn.disabled = true; btn.classList.add("busy"); label.textContent = "Submitting...";
     var fd = new FormData(form);
     fetch("/api/apply", { method: "POST", body: fd })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok && j.ok, j: j }; }); })
       .then(function (res) {
         if (res.ok) {
-          var name = (form.elements.firstName.value || "").trim();
-          $("ap-done-text").textContent = "Thank you" + (name ? ", " + name : "") + ". Your application and resume have been sent to our HR team.";
+          var name = (form.elements.name.value || "").trim().split(" ")[0];
+          $("ap-done-text").textContent = "Thank you" + (name ? ", " + name : "") + ". Your application has been sent to our HR team.";
           form.style.display = "none"; banner.classList.remove("on"); $("ap-done").classList.add("on");
           $("ap-done").scrollIntoView({ behavior: "smooth", block: "start" }); $("ap-done").focus({ preventScroll: true });
           return;

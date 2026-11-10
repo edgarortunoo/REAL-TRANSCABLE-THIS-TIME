@@ -13,16 +13,67 @@
 const MAX_FILE_BYTES = 5 * 1024 * 1024; // 5 MB
 const MIN_FILL_MS = 3000; // faster than this = a bot, not a person
 
-const FIELD_LIMITS = {
-  firstName: 80,
-  lastName: 80,
-  email: 200,
-  phone: 40,
-  city: 100,
-  state: 60,
-  position: 150,
-  message: 4000,
-};
+// Every field on the application form, grouped the way it appears in the email to HR.
+// [key, label, max length]
+const EMP = (i) => [
+  [`emp${i}_name`, "Employer name", 150],
+  [`emp${i}_position`, "Position held", 150],
+  [`emp${i}_dates`, "Month & year (from / to)", 80],
+  [`emp${i}_reason`, "Reason for leaving", 200],
+  [`emp${i}_address`, "Address", 250],
+  [`emp${i}_phone`, "Phone number", 40],
+  [`emp${i}_contact`, "Person to contact", 120],
+  [`emp${i}_contactPos`, "Contact's position", 120],
+];
+const REF = (i) => [
+  [`ref${i}_name`, "Name / position", 150],
+  [`ref${i}_company`, "Company name", 150],
+  [`ref${i}_contact`, "Address / phone number", 250],
+  [`ref${i}_years`, "Years acquainted", 40],
+];
+const SECTIONS = [
+  ["APPLICANT", [
+    ["name", "Applicant name", 120],
+    ["email", "Applicant email", 200],
+    ["phone", "Applicant home phone number", 40],
+    ["address", "Applicant present address", 250],
+    ["over18", "Are you at least 18 years old?", 10],
+    ["background", "Authorizes background investigation (prior employers, education, criminal records)?", 10],
+    ["terminated", "Ever involuntarily terminated by an employer?", 10],
+  ]],
+  ["POSITION DESIRED", [
+    ["department", "Department", 40],
+    ["otherDesired", "Other desired", 150],
+    ["shift", "Shift preference", 10],
+    ["status", "Status", 20],
+    ["salary", "Salary expectations", 100],
+    ["startDate", "Date available to start", 20],
+    ["howHeard", "How did you hear about TCI?", 200],
+    ["employed", "Currently employed?", 10],
+    ["contactEmployer", "May we contact current employer?", 10],
+    ["workedHere", "Employed by Trans Cable before?", 10],
+  ]],
+  ["EDUCATION", [
+    ["hsSchool", "High school (name and location)", 200],
+    ["hsLastYear", "Last year completed", 40],
+    ["hsGrad", "Graduated (high school)?", 10],
+    ["hsSubjects", "Subjects studied and degrees received", 500],
+    ["collegeSchool", "College (name and location)", 200],
+    ["collegeGrad", "Graduated (college)?", 10],
+  ]],
+  ...[1, 2, 3, 4].map((i) => [`EMPLOYER ${i}`, EMP(i)]),
+  ["EXPERIENCE AND SKILLS", [
+    ["describeWork", "Nature of work in present or most recent job", 3000],
+    ["skills", "Special skills or knowledge (tools and machines)", 3000],
+    ["certs", "Certifications or licenses", 3000],
+  ]],
+  ...[1, 2, 3].map((i) => [`REFERENCE ${i}`, REF(i)]),
+  ["SIGNATURE", [
+    ["signName", "Signed (typed full name)", 120],
+    ["signDate", "Date", 20],
+  ]],
+];
+const REQUIRED = ["name", "email", "phone", "address", "over18", "background", "terminated", "signName", "signDate"];
 
 export async function onRequest(context) {
   if (context.request.method !== "POST") {
@@ -46,28 +97,35 @@ export async function onRequest(context) {
   }
 
   const data = {};
-  for (const [key, max] of Object.entries(FIELD_LIMITS)) {
-    data[key] = String(form.get(key) ?? "").trim().slice(0, max);
+  for (const [, fields] of SECTIONS) {
+    for (const [key, , max] of fields) {
+      data[key] = String(form.get(key) ?? "").trim().slice(0, max);
+    }
   }
 
-  if (!data.firstName || !data.lastName || !data.email || !data.phone) {
+  if (REQUIRED.some((k) => !data[k])) {
     return json({ ok: false, error: "missing-fields" }, 400);
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
     return json({ ok: false, error: "invalid-email" }, 400);
   }
 
+  // The resume is optional, but if one is attached it must be a real PDF or Word file.
+  let attachments = [];
+  let attachmentName = "";
   const file = form.get("resume");
-  if (!file || typeof file === "string" || !file.size) {
-    return json({ ok: false, error: "missing-resume" }, 400);
-  }
-  if (file.size > MAX_FILE_BYTES) {
-    return json({ ok: false, error: "file-too-large" }, 413);
-  }
-  const bytes = new Uint8Array(await file.arrayBuffer());
-  const kind = detectResumeType(bytes, file.name);
-  if (!kind) {
-    return json({ ok: false, error: "bad-file-type" }, 415);
+  if (file && typeof file !== "string" && file.size) {
+    if (file.size > MAX_FILE_BYTES) {
+      return json({ ok: false, error: "file-too-large" }, 413);
+    }
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    const kind = detectResumeType(bytes, file.name);
+    if (!kind) {
+      return json({ ok: false, error: "bad-file-type" }, 415);
+    }
+    const safeName = data.name.replace(/[^A-Za-z0-9 ._-]/g, "").trim().replace(/\s+/g, "_") || "Applicant";
+    attachmentName = `${safeName}_Resume.${kind}`;
+    attachments = [{ filename: attachmentName, content: toBase64(bytes) }];
   }
 
   const apiKey = context.env.RESEND_API_KEY;
@@ -86,26 +144,18 @@ export async function onRequest(context) {
     );
   }
 
-  const fullName = `${data.firstName} ${data.lastName}`;
-  const place = [data.city, data.state].filter(Boolean).join(", ");
-  const safeName = fullName.replace(/[^A-Za-z0-9 ._-]/g, "").trim().replace(/\s+/g, "_") || "Applicant";
-  const attachmentName = `${safeName}_Resume.${kind}`;
+  const lines = ["New online application from transcableusa.com", ""];
+  for (const [title, fields] of SECTIONS) {
+    const filled = fields.filter(([key]) => data[key]);
+    // Skip empty optional blocks (for example an unused Employer 4) to keep the email short.
+    if (!filled.length) continue;
+    lines.push(`=== ${title} ===`);
+    for (const [key, label] of filled) lines.push(`${label}: ${data[key]}`);
+    lines.push("");
+  }
+  lines.push(attachmentName ? `Resume attached: ${attachmentName}` : "Resume: not attached");
 
-  const lines = [
-    "New online application from transcableusa.com",
-    "",
-    `Name: ${fullName}`,
-    `Email: ${data.email}`,
-    `Phone: ${data.phone}`,
-    `Location: ${place || "Not provided"}`,
-    `Position of interest: ${data.position || "Not specified"}`,
-    "",
-    "Additional information:",
-    data.message || "None provided",
-    "",
-    `Resume attached: ${attachmentName}`,
-  ];
-
+  const subjectBits = [data.name, data.department].filter(Boolean).join(" - ");
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -117,9 +167,9 @@ export async function onRequest(context) {
         from: fromEmail,
         to: [toEmail],
         reply_to: data.email,
-        subject: `Application: ${fullName}${data.position ? ` - ${data.position}` : ""}`,
+        subject: `Application: ${subjectBits}`,
         text: lines.join("\n"),
-        attachments: [{ filename: attachmentName, content: toBase64(bytes) }],
+        ...(attachments.length ? { attachments } : {}),
       }),
     });
     if (!res.ok) return json({ ok: false, error: "send-failed", status: res.status }, 502);
