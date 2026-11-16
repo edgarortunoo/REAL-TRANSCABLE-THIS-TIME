@@ -1,6 +1,6 @@
 // Cloudflare Pages Function: contact form lead emailer via Resend.
-// Set RESEND_API_KEY (and optionally CONTACT_TO) in the Pages project settings,
-// or the form returns a friendly "not configured" message.
+// Set RESEND_API_KEY (and optionally CONTACT_TO / CONTACT_FROM) in the Pages project
+// settings, or the form returns a friendly "not configured" message.
 export async function onRequest(context) {
   if (context.request.method !== "POST") {
     return json({ ok: false, error: "method" }, 405);
@@ -28,6 +28,8 @@ export async function onRequest(context) {
 
   const apiKey = context.env.RESEND_API_KEY;
   const toEmail = context.env.CONTACT_TO ?? "info@transcableusa.com";
+  // Must be an address on the domain verified in Resend (transcableusa.com).
+  const fromEmail = context.env.CONTACT_FROM ?? "Trans Cable Website <website@transcableusa.com>";
 
   if (!apiKey) {
     return json(
@@ -49,7 +51,7 @@ export async function onRequest(context) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Trans Cable Website <onboarding@resend.dev>",
+        from: fromEmail,
         to: [toEmail],
         reply_to: email,
         subject: `[Website] ${subject}`,
